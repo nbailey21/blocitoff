@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  devise_for :users, controllers: { confirmations: 'confirmations' }
+  root 'welcome#index'
 
   get 'welcome/about'
 
