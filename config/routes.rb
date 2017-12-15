@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :users, only: [:show]
+  
+  get 'items/create'
   
   devise_for :users, controllers: { confirmations: 'confirmations' }
   
+  resources :users, only: [:show] do
+    resources :items, only: [:create]
+  end
+  
   root 'welcome#index'
+  
+  get 'welcome/index'
 
   get 'about' => 'welcome#about'
 
