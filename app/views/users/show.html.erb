@@ -3,15 +3,19 @@
         <div class="media">
             <br />
             <div class="media-body">
-                <h2 class="media-heading"><%= @user.email %></h2>
-                <%= render partial: 'items/form', locals: {user: @user} %>
-                <div class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <%= render @items %>
-                        </h4>
+                <% @users.each do |user| %>
+                    <h2 class="media-heading"><%= user.email %></h2>
+                    <% if user == current_user %>
+                        <%= render partial: 'items/form', locals: {user: user} %>
+                    <% end %>
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <%= render user.items %>
+                            </h4>
+                        </div>
                     </div>
-                </div>
+                <% end %>
             </div>
         </div>
     </div>
