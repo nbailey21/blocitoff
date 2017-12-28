@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'items/create'
-  
   devise_for :users, controllers: { confirmations: 'confirmations' }
   
   resources :users, only: [:show] do

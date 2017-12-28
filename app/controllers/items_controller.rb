@@ -13,8 +13,7 @@ class ItemsController < ApplicationController
   end
   
   def destroy
-    @user = current_user
-    @item = current_user.items.find(params[:id])
+    @item = Item.find(params[:id])
     
     if @item.destroy
       flash[:notice] = "Item deleted"
@@ -23,7 +22,6 @@ class ItemsController < ApplicationController
       flash.now[:alert] = "Error deleting the item."
       redirect_to user_path(current_user.id)
     end
-    
   end
   
   private

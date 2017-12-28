@@ -9,7 +9,11 @@
                 <div class="media">
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <%= render @user.items %>
+                            <ul>
+                                <% @user.items.slice(0, @user.items.count).each do |item| %>
+                                    <li><%= item.name %> - <%= distance_of_time_in_words(item.created_at + 7.days, Time.now, include_seconds: true) %> left  <%= link_to "", [current_user, item], remote: true, method: :delete, class: 'glyphicon glyphicon-ok' %></li>
+                                <% end %>
+                            </ul>    
                         </h4>
                     </div>
                 </div>
